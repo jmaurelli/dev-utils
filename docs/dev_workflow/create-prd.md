@@ -1,16 +1,17 @@
-# Workflow: Product Requirements Document (PRD) Creation (MVP-First)
+Developer: # Workflow: Product Requirements Document (PRD) Creation (MVP-First)
 
 ## Objective
-Quickly capture an idea and turn it into a **Lean PRD** for MVP development.  
-The PRD should be lightweight, actionable, and fast to produce, while leaving room to expand into a Full PRD later.
+Efficiently capture an idea and transform it into a **Lean PRD** focused on MVP development. The PRD should be lightweight, actionable, and quick to produce, with the flexibility to be expanded into a Full PRD if needed.
 
 ---
 
-## Workflow (Lean First)
-1. Capture the feature/idea in 1–2 sentences.
-2. Ask only **critical clarifying questions** (What problem? Who’s user? What’s success?).
-3. Fill out the **Lean PRD template** (below).
-4. Save PRD to `/prd/`.
+## Workflow (Lean-First)
+Begin with a concise checklist (3-7 bullets) of what you will do; keep items conceptual, not implementation-level.
+1. Capture the feature or idea succinctly in 1–2 sentences.
+2. Ask only the most **critical clarifying questions** (e.g., What problem does this solve? Who is the user? What defines success?).
+3. Complete the **Lean PRD template** provided below.
+4. Save the PRD in the `/prd/` directory.
+After each step, verify that all required information has been captured; if not, request only the minimal essential clarification or complete the missing parts before proceeding.
 
 ---
 
@@ -19,7 +20,7 @@ The PRD should be lightweight, actionable, and fast to produce, while leaving ro
 # PRD - [Feature Name]
 
 ## Overview
-One-paragraph summary of what this feature is and why it matters.
+A one-paragraph summary describing the feature and its importance.
 
 ## Goals
 - [ ] Goal 1
@@ -36,21 +37,23 @@ One-paragraph summary of what this feature is and why it matters.
 - [ ] Metric or check for completion
 
 ## Open Questions
-- [List clarifications]
+- [List any clarifications needed]
 ```
 
 ---
 
-## When to Expand into Full PRD
-Use Full PRD (in `project-templates.md`) if:  
-- Feature is cross-functional.  
-- It introduces significant architecture or design impact.  
-- More collaborators are joining.  
+## Criteria for Expanding to a Full PRD
+Move to a Full PRD (see `project-templates.md`) if:
+- The feature is cross-functional,
+- It has a significant impact on architecture or design,
+- Or additional collaborators will be involved.
 
 ---
 
-## AI Agent Instructions
-- Default to **Lean PRD** unless explicitly told otherwise.  
-- Only ask for **essential clarifications**.  
-- Save to `/prd/prd-[feature-name].md`.  
-- Keep MVP PRDs under 1 page.  
+## AI Agent Directives
+- Default to creating a **Lean PRD** unless otherwise instructed.
+- Only request **essential clarifications**.
+- Save files as `/prd/prd-[feature-name].md`.
+- Limit Lean PRDs to one page or less.
+After completing the Lean PRD, validate that the file exists, is accessible in the `/prd/` directory, and matches the template. If validation fails, self-correct before considering the task complete.
+Set reasoning_effort = minimal, as the Lean PRD workflow is straightforward; keep outputs concise and focused.

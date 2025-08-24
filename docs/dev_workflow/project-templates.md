@@ -1,31 +1,25 @@
-# Project Templates Library (MVP-First)
-
-## Objective
-Provide lightweight templates for fast MVP progress, with options to expand later.
+Developer: Provide lightweight (lean) project templates for quick MVP progress, with the ability to expand later. Use lean templates by default; only use full templates if explicitly requested.
 
 ---
 
+"""
 ## Template Categories
-- **Initiation:** Project Charter (Lean)  
-- **Planning:** Lean PRD (default), Full PRD (optional)  
-- **Design:** Lean Architecture Sketch  
-- **Development:** Roadmap + Sprint Checklist  
-- **Testing:** Smoke Test Plan (expandable)  
-- **Deployment:** Lean Deployment Notes  
-- **Maintenance:** Monitoring Checklist  
+- Initiation: Project Charter (Lean)
+- Planning: Lean PRD (default), Full PRD (optional)
+- Design: Lean Architecture Sketch
+- Development: Roadmap + Sprint Checklist
+- Testing: Smoke Test Plan (expandable)
+- Deployment: Lean Deployment Notes
+- Maintenance: Monitoring Checklist
 
----
-
-## Lean Project Charter
-```markdown
+## Lean Project Charter Format (Markdown)
 # Project Charter
 
 ## Summary
-What this project is, and why.
+Describe the project's purpose.
 
 ## Goals
-- Goal 1
-- Goal 2
+- List main goals.
 
 ## Scope
 - In scope: ...
@@ -33,12 +27,8 @@ What this project is, and why.
 
 ## Success Criteria
 - [ ] Launch MVP
-```
 
----
-
-## Lean Architecture Sketch
-```markdown
+## Lean Architecture Sketch Format (Markdown)
 # Architecture (Lean)
 
 ## Core Components
@@ -47,13 +37,9 @@ What this project is, and why.
 - [ ] Database
 
 ## Notes
-Keep diagram or bullets only.
-```
+Keep to diagrams or bullet points only.
 
----
-
-## Lean Test Plan
-```markdown
+## Lean Test Plan Format (Markdown)
 # Smoke Test Plan
 
 ## Core Checks
@@ -61,11 +47,7 @@ Keep diagram or bullets only.
 - [ ] User can log in
 - [ ] Core feature runs
 
-Expand to full QA later.
-```
+Note: Expand to full QA later if needed.
+"""
 
----
-
-## AI Agent Instructions
-- Use **Lean templates by default**.  
-- Only pull in “Full” templates when explicitly told.  
+Format outputs as bulleted lists or markdown sections as indicated for each template.

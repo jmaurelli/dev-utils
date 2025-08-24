@@ -1,174 +1,134 @@
-# 🔹 Consolidated Hierarchical Instructions for LLM Priming
+Developer: # 🔹 Consolidated Hierarchical Instructions for LLM Priming
 
-This document unifies **Task List Management**, **TDD with Design**, and **Test Suite Standards** into a single hierarchical framework optimized for LLM execution and priming.
+This document integrates **Task List Management**, **Test-Driven Development (TDD) with Design**, and **Test Suite Standards** into a unified, hierarchical structure optimized for language model execution and priming.
 
 ---
 
 ## 0. Meta Protocol (Global)
 
-* Always operate hierarchically:
-
-  1. **Plan**: Start with a short conceptual checklist (3–7 bullets).
-  2. **Act**: Perform one sub-task at a time.
-  3. **Validate**: After each step, provide a 1–2 line confirmation or self-correction.
-  4. **Pause**: Wait for explicit user approval before advancing.
-* Never skip validation or checkpoints.
-* Keep reasoning concise, avoid verbosity.
-* Before tool calls, announce purpose and minimal inputs.
-* After file/code changes, validate correctness briefly.
+- **Hierarchical Procedure:**
+  1. **Plan:** Begin each task with a short conceptual checklist (3–7 bullet points).
+  2. **Act:** Address one sub-task at a time in order.
+  3. **Validate:** After each step, provide a 1–2 sentence confirmation or self-correction.
+  4. **Pause:** Await explicit user approval before proceeding further.
+- Always follow validation and checkpoint requirements precisely.
+- Keep reasoning summaries concise and limit verbosity to what is strictly required.
+- Before any significant tool invocation, briefly state the purpose and the minimal inputs needed.
+- After any file or code modification, briefly confirm correctness and outcome.
+- Use only allowed tools specified by context; for routine, read-only tasks proceed automatically, but require explicit user confirmation for any destructive or irreversible actions.
 
 ---
 
 ## 1. Task List Management Protocol
 
-**Purpose:** Maintain PRD-linked task lists, enforce task flow, and ensure traceability.
+**Purpose:** Maintain product requirement document (PRD)-linked task lists, reinforce task progression, and ensure traceability.
 
 ### Rules
 
-* Work on **one sub-task at a time**.
-* **Completion Protocol:**
-
-  1. Mark sub-task `[x]`.
-  2. Identify changed files with `git diff --name-only` (base: `main`).
-  3. Run **targeted tests** for changed files → log results to `/test/` JSON files.
-  4. Remove all temp files.
-  5. Commit with **conventional commit message** (`feat:`, `fix:`, etc.) including summary, major changes, PRD reference.
-  6. Mark parent task `[x]` once all children are done.
-  7. Update `/tasks/tasks-[prd-file-name].md` changelog with date + summary.
-* Maintain **Relevant Files** list continuously.
+- Only work on one sub-task at any given time.
+- **Completion Protocol:**
+  1. Mark a completed sub-task as `[x]`.
+  2. Identify changed files using `git diff --name-only` (base: `main`).
+  3. Run targeted tests for changed files; log results to `/test/` as JSON.
+  4. Remove all temporary and intermediate files.
+  5. Commit changes using a **conventional commit message** (`feat:`, `fix:`, etc.), including a summary, major modifications, and PRD reference.
+  6. Mark a parent task as `[x]` only after all its child sub-tasks are complete.
+  7. Update `/tasks/tasks-[prd-file-name].md` changelog with date and summary.
+- Ensure the list of **Relevant Files** is continuously up to date.
 
 ---
 
 ## 2. TDD with Design Protocol
 
-**Purpose:** Fuse TDD with low-complexity design principles.
+**Purpose:** Integrate test-driven development with minimal-complexity, best-practice design.
 
 ### Phases
 
 1. **Pre-Implementation Planning**
-
-   * Define requirements and acceptance criteria.
-   * Propose 2+ design approaches, select lowest complexity.
-   * Map data flows, dependencies, API contracts.
-
-2. **RED Phase: Write Failing Tests**
-
-   * Cover requirements with unit/integration/E2E.
-   * Include edge cases and error scenarios.
-   * Use contract-based mocks only.
-
+   - Clearly define requirements and acceptance criteria.
+   - Propose at least two design approaches and select the lowest complexity option.
+   - Outline data flows, dependencies, and API contracts.
+2. **RED Phase: Author Failing Tests**
+   - Ensure coverage of all requirements (unit/integration/E2E tests).
+   - Include edge cases and error-handling in test suites.
+   - Use contract-based mocks exclusively.
 3. **GREEN Phase: Minimal Implementation**
-
-   * Start with defensive/error handling code.
-   * Write minimal code to pass each test.
-   * Iterate test-by-test until green.
-
-4. **REFACTOR Phase: Improve Quality**
-
-   * Remove duplication, simplify logic, enhance naming.
-   * Validate deep modules, information hiding, error prevention.
-
+   - Implement defensive and error-handling code first.
+   - Write the minimal code to satisfy each test, addressing tests iteratively.
+4. **REFACTOR Phase: Code Quality Improvement**
+   - Remove duplication, simplify logic, and improve naming.
+   - Validate module depth, enforce information hiding, and check for robust error prevention.
 5. **Integration & Validation**
-
-   * Run end-to-end workflows across environments.
-   * Ensure performance, accessibility, stability.
+   - Execute full workflows across environments to verify performance, accessibility, and stability.
 
 ### Success Metrics
 
-* All tests pass.
-* 100% requirement coverage.
-* Zero runtime errors.
-* Deep modules, simple interfaces.
-* Complexity hidden from consumers.
+- All tests passing
+- 100% requirement coverage
+- Zero runtime errors
+- Deep modules, simple interfaces
+- Complexity concealed from consumers
 
-### Pitfalls to Avoid
+### Common Pitfalls
 
-* Writing tests after code.
-* Modifying tests to fit code.
-* Skipping refactor.
-* Shallow modules or information leakage.
+- Creating tests after implementation
+- Modifying tests to fit existing code
+- Skipping refactor step
+- Using shallow modules or causing information leakage
 
 ---
 
 ## 3. Test Suite Protocol
 
-**Purpose:** Ensure test results are **machine-validated JSON** for agent consumption.
+**Purpose:** Ensure all test outcomes are machine-validated JSON for direct agent consumption.
 
 ### Rules
 
-* **Terminal output must never be read for validation.**
-* All test results must be written to `/test/<test_name>.json`. The LLM/AI agent must **open and read these files directly**.
-* After validation, **delete JSON files if all tests pass**. During MVP, no historical logs are maintained.
-* Only if tests fail, retain the file until issues are resolved.
+- **Do not validate using terminal output.**
+- All test results must be written to `/test/<test_name>.json` and validated directly.
+- Delete all JSON test results if all tests pass; retain only failed test results until all pass.
+- No historical logs are permitted during MVP; only current results are relevant.
 
 ### Framework-Specific Commands
 
-#### Command Selection Table
-
 | Framework        | Command                                                                 |
-| ---------------- | ----------------------------------------------------------------------- |
+|------------------|-------------------------------------------------------------------------|
 | **Jest**         | `jest --runInBand --json --outputFile=test/<test_name>.json <files>`    |
 | **Mocha**        | `mocha --reporter json <files> > test/<test_name>.json`                 |
 | **Pytest**       | `pytest <files> --json-report --json-report-file=test/<test_name>.json` |
 | **Java (JUnit)** | `mvn test -DjsonReportOutput=test/<test_name>.json`                     |
-| **Next.js**      | Same as Jest above                                                      |
+| **Next.js**      | Same as Jest                                                            |
 
-The LLM/AI agent must auto-select the correct non-interactive JSON output command for the active framework:
+LLM/AI agents must use the precise, non-interactive JSON-producing command for each framework:
 
-* **Jest:**
-
+- **Jest:**
   ```bash
   jest --runInBand --json --outputFile=test/<test_name>.json <files>
   ```
-
-* **Mocha:**
-
+- **Mocha:**
   ```bash
   mocha --reporter json <files> > test/<test_name>.json
   ```
-
-* **Pytest:**
-
+- **Pytest:**
   ```bash
   pytest <files> --json-report --json-report-file=test/<test_name>.json
   ```
-
-* **Java (JUnit):**
-
+- **Java (JUnit):**
   ```bash
   mvn test -DjsonReportOutput=test/<test_name>.json
   ```
+- **Next.js:** Same as Jest.
 
-* **Next.js (with Jest under the hood):** same as Jest above.
+### JSON Schema
 
-### Schema
+Each test result file must contain:
 
-Each JSON file must strictly contain:
+- `test_name`: string `[a-zA-Z0-9_-]{1,255}`
+- `status`: one of `"passed" | "failed" | "skipped"`
+- `run_time_seconds`: float, three decimals
+- `error_message`: null if passing/skipped, or string if test failed
 
-* `test_name`: `[a-zA-Z0-9_-]{1,255}`
-* `status`: `"passed" | "failed" | "skipped"`
-* `run_time_seconds`: float, 3 decimals
-* `error_message`: null if pass/skip, string if failed
-
-### Workflow
-
-#### Quick Checklist
-
-1. **Plan**: Identify changed files and relevant tests.
-
-2. **Run**: Execute framework-specific command to output JSON results.
-
-3. **Validate**: Open and read JSON file(s), check schema and outcomes.
-
-4. **Delete**: If all tests pass, delete JSON file(s); if not, retain until fixed.
-
-5. Run only the relevant/changed tests, output to `/test/` JSON.
-
-6. LLM **must read the JSON file**, validate schema, and report outcome.
-
-7. If all pass → delete file(s). If failures → retain file(s) until fixed.
-
-### Output Example
+#### Example Output
 
 ```json
 {
@@ -179,18 +139,28 @@ Each JSON file must strictly contain:
 }
 ```
 
-### Success Conditions
+### Workflow Checklist
 
-* All result files schema-validated.
-* No CLI interaction (watch/quit prompts forbidden).
-* Files deleted automatically after successful runs.
-* Only JSON file contents, never terminal logs, are used for validation.
+1. Plan: Identify changed code and relevant tests.
+2. Run: Execute the framework-specific command to generate JSON output.
+3. Validate: Open each JSON file, check schema compliance, and review results.
+4. Delete: Remove JSON files if all tests pass; keep files only if any fail until issues are resolved.
+5. Ensure only relevant/changed tests are executed and validated.
+6. Agent must validate and report solely based on JSON file contents.
+7. Upon full pass, delete all JSON files; if any tests fail, preserve related files until resolved.
+
+### Success Criteria
+
+- All result files match schema
+- No CLI-based validation (no interactive or watch mode)
+- JSON results automatically deleted upon success
+- Only JSON file contents are used for validation and reporting
 
 ---
 
 # 🔹 Usage Flow
 
-1. Prime with **Meta Protocol (0)**.
-2. Select applicable protocol (Task List, TDD, or Test Suite).
-3. Follow hierarchical steps: **Plan → Act → Validate → Pause**.
-4. Confirm correctness and alignment before moving forward.
+1. Prime session using the **Meta Protocol (0)**.
+2. Identify and follow the appropriate protocol (Task List, TDD, Test Suite) based on the current task.
+3. Progress through hierarchical steps: **Plan → Act → Validate → Pause**.
+4. At each stage, confirm correctness and alignment with requirements before proceeding.

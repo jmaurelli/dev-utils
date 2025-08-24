@@ -1,110 +1,51 @@
-# Git Development Workflow
+Developer: Follow this Git development workflow for the Suelen Clean project:
 
+"""
 ## Overview
+- Ensures a clean, maintainable code history and effective collaboration.
 
-This document outlines the Git development workflow for the Suelen Clean project. Following these practices ensures clean, maintainable code history and effective collaboration.
-
-## Repository Setup
-
-### Initial Setup (Already Complete)
-- ✅ Repository initialized locally
-- ✅ Connected to GitHub remote
-- ✅ Initial commit pushed
-- ✅ Main branch established
+## Repository Setup (Already Complete)
+- Repository initialized locally
+- Connected to GitHub remote
+- Initial commit pushed
+- Main branch established
 
 ## Branch Strategy
+- **MVP Development Phase**: Work directly on `main` for speed and active iteration as the architecture evolves.
+- **Production Phase**: Restrict `main` to production-ready code. Protect the branch and merge via Pull Requests (PRs) only.
+- **Feature Branches (Production Phase)**: Name as `feature/descriptive-name`. Create for new features; developed, tested, merged via PR, then deleted.
+- **Hotfix Branches (Production Phase)**: Name as `hotfix/issue-description`. Use for urgent bug fixes; create, fix, test, PR, merge, delete.
 
-### MVP Development Phase
-- **Main Branch**: Primary development branch for MVP
-- **Purpose**: Active development and iteration
-- **Strategy**: Direct development on main during MVP phase
-- **Rationale**: Architecture is evolving, rapid iteration needed
+## Mindset: Git-First Approach
+- Shift from just saving code to tracking changes and making them reviewable.
+- **MVP Phase**: Prioritize speed and iteration—work directly on main.
+- **Production Phase**: Focus on quality, using feature branches and PR reviews for stability and collaboration.
 
-### Production Phase (Future)
-- **Main Branch**: Production-ready code
-- **Protection**: Should be protected in GitHub settings
-- **Merging**: Only via Pull Requests (PRs)
+### Before Coding
+- Define what you want to accomplish.
+- Plan your commit messages.
+- Ensure changes are a complete unit of work.
+- Decide if it’s time to commit or continue.
+- (During MVP: prioritize rapid iteration over branch management.)
 
-### Feature Branches (Production Phase)
-- **Naming**: `feature/descriptive-name` (e.g., `feature/contact-form-validation`)
-- **Purpose**: Development of new features
-- **Lifecycle**: Create → Develop → Test → PR → Merge → Delete
+### Git-First Steps
+1. Check environment before making changes.
+2. Plan and describe your changes.
+3. Make logical, complete grouped changes.
+4. Commit using clear, descriptive messages.
+5. Push when ready to share your work.
 
-### Hotfix Branches (Production Phase)
-- **Naming**: `hotfix/issue-description` (e.g., `hotfix/fix-mobile-layout`)
-- **Purpose**: Critical bug fixes for production
-- **Lifecycle**: Create → Fix → Test → PR → Merge → Delete
-
-## Git-First Mindset
-
-### The Mental Shift
-**Old mindset**: "I need to save my work"  
-**New mindset**: "I need to track my changes and make them reviewable"
-
-### MVP vs Production Workflow
-
-#### **MVP Development Phase**
-- **Goal**: Rapid iteration and feature development
-- **Strategy**: Direct development on main branch
-- **Focus**: Speed and flexibility over process
-- **Rationale**: Architecture is evolving, need quick feedback loops
-
-#### **Production Phase**
-- **Goal**: Stable, maintainable code with proper review
-- **Strategy**: Feature branches with PR reviews
-- **Focus**: Code quality and collaboration
-- **Rationale**: Multiple developers, stable architecture
-
-### Before You Start Coding
-Always ask yourself:
-- [ ] What am I trying to accomplish?
-- [ ] How will I describe this change in a commit message?
-- [ ] Is this a complete unit of work?
-- [ ] Should I commit this now or continue working?
-
-**Note**: During MVP phase, focus on rapid iteration rather than branch management.
-
-### The "Git-First" Approach
-1. **Check your environment** before making changes
-2. **Plan your changes** and how you'll describe them
-3. **Make logical, complete changes** that can be committed together
-4. **Commit strategically** with clear, descriptive messages
-5. **Push when ready** to share your work
-
-## Daily Workflow
-
-### Starting Work (MVP Phase)
-```bash
-# 1. Check current status
-git status
-
-# 2. Update main branch (if working with others)
-git pull origin main
-
-# 3. Start coding directly on main
-# No need to create feature branches during MVP
-```
-
-### During Development (MVP Phase)
-```bash
-# Make changes to your files...
-
-# 1. Check status frequently (every 10-15 minutes)
-git status
-
-# 2. Stage specific files when changes are logically complete
-git add src/components/NewComponent.tsx
-git add src/data/new-data.ts
-
-# Or add all changes (use sparingly)
-git add .
-
-# 3. Commit when you've completed a logical unit of work
-git commit -m "feat: add contact form validation" -m "- Add email format validation" -m "- Add required field validation" -m "- Add error message display"
-
-# 4. Push to remote
-git push origin main
-```
+## Daily Workflow (MVP Phase)
+- **Start of Day**:
+  - Check repo status: `git status`
+  - Update `main` if working with others: `git pull origin main`
+  - Begin coding directly on `main` (no need for feature branches during MVP)
+- **During Development**:
+  - Check `git status` every 10-15 minutes.
+  - Stage complete logical changes: `git add <file>` (use `git add .` sparingly)
+  - Commit with meaningful messages when a logical unit is complete.
+  - Push changes to remote: `git push origin main`
+"""
 
 ### Mental Checklist While Working
 - [ ] Am I making logical, complete changes?

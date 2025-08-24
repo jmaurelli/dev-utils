@@ -1,62 +1,65 @@
-# MVP-First Workflow Cheat Sheet (Optimized to 5 Docs)
+Developer: # MVP-First Workflow Cheat Sheet (Optimized: 5 Core Docs)
 
 ## 🚀 Goal
-Move fast as a solo dev to deliver an MVP, while setting the foundation for future scaling & quality.
+Accelerate solo MVP delivery while establishing a scalable, quality foundation.
 
 ---
 
 ## Workflow Overview
+Begin with a concise checklist (3-7 bullets) of planned steps before starting substantive work.
+
 1. **Idea → PRD**  
-   - Use `create-prd.md`  
-   - Default: **Lean PRD** (1 page max).  
-   - Only expand to Full PRD if project grows.  
+   - Use `create-prd.md`.  
+   - Default to a **Lean PRD** (max 1 page).  
+   - Expand to Full PRD only as needed when the project evolves.
 
 2. **PRD → Tasks + Testing**  
-   - Use `tasks-and-testing.md`  
-   - Extract 3–5 parent tasks, break into small sub-tasks.  
-   - Add smoke tests + stubs inline with tasks.  
-   - Save to `/tasks/tasks-[prd-name].md`.  
+   - Use `tasks-and-testing.md`.  
+   - Identify 3–5 parent tasks, breaking them down into sub-tasks.  
+   - Integrate smoke tests and test stubs aligned to tasks.  
+   - Save outputs to `/tasks/tasks-[prd-name].md`.
 
 3. **Tasks → Code**  
-   - Implement quickly.  
-   - Write smoke tests for core flows.  
-   - Place test stubs alongside code.  
+   - Implement rapidly following the specified tasks.  
+   - Focus on smoke tests for essential flows.  
+   - Store test stubs with the codebase.
 
 4. **Deploy MVP**  
-   - Use notes from `project-templates.md` (Lean Deployment).  
-   - Ship as soon as smoke tests pass.  
+   - Reference `project-templates.md` for Lean Deployment.  
+   - Deploy once smoke tests pass. After deployment, validate that key flows function as intended and address any failures immediately.
 
-5. **Enhancement Mode (later)**  
-   - Expand Lean PRDs → Full PRDs.  
-   - Expand tasks → full TDD.  
-   - Expand smoke tests → full test suite.  
-   - Add monitoring & performance.  
+5. **Enhancement Mode (as needed)**  
+   - Upgrade Lean PRDs to Full PRDs as complexity grows.  
+   - Develop tasks into comprehensive TDD practices.  
+   - Expand smoke tests into a full test suite.  
+   - Integrate monitoring and performance improvements.
 
 ---
 
 ## Document Roles
-- `create-prd.md` → Capture idea, make Lean PRD.  
-- `tasks-and-testing.md` → Turn PRD into tasks **with built-in testing guidance**.  
-- `project-templates.md` → Library of Lean/Full docs.  
-- `software-project-workflow-guide.md` → Defines MVP vs Enhancement modes.  
-- `test-suite.md` → Store results in JSON, expand schema later.  
+- `create-prd.md`: Capture ideas and generate Lean PRDs.
+- `tasks-and-testing.md`: Translate PRDs into actionable tasks, incorporating initial testing guidance.
+- `project-templates.md`: Reference for both Lean and Full templates.
+- `software-project-workflow-guide.md`: Clarifies MVP versus Enhancement workflows.
+- `test-suite.md`: Archive and evolve test results (JSON schema adaptable).
 
 ---
 
 ## AI Agent Rules (MVP Mode)
-- Default to Lean templates.  
-- Do not generate excessive clarifications.  
-- Always create test stubs, but only smoke tests are required now.  
-- Keep all docs ≤1 page during MVP.  
-- Save files in the correct folders (`/prd/`, `/tasks/`, `/tests/`).  
+- Use only Lean templates for all docs during MVP phase.
+- Avoid unnecessary clarifications or interruptions.
+- Always generate test stubs, with only smoke tests required for MVP acceptance.
+- Keep MVP-phase documents at or under 1 page.
+- Organize output files into appropriate folders: `/prd/`, `/tasks/`, `/tests/`.
+- After each tool call or code edit, validate the result in 1-2 sentences and proceed or iterate if validation fails.
 
 ---
 
 ## Example Flow
-1. Capture feature → Lean PRD (`prd-user-login.md`).  
-2. Generate tasks + smoke tests → (`tasks-prd-user-login.md`).  
-3. Implement:  
-   - Code login endpoint.  
-   - Smoke test: “User can log in successfully.”  
-4. Deploy MVP.  
-5. Expand later if project grows.  
+1. Capture feature → Lean PRD (`prd-user-login.md`).
+2. Generate corresponding tasks and smoke tests (`tasks-prd-user-login.md`).
+3. Implement:
+   - Code login endpoint.
+   - Create smoke test: “User can log in successfully.”
+4. Deploy MVP and confirm that all critical workflows pass.
+5. Expand project documentation and testing as requirements evolve.
